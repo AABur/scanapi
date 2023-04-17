@@ -201,9 +201,7 @@ class EndpointNode:
             [dict]: a dictionary containing the values of the field.
         """
         values = self.spec.get(field_name, {})
-        parent_values = getattr(self.parent, field_name, None)
-
-        if parent_values:
+        if parent_values := getattr(self.parent, field_name, None):
             return {**parent_values, **values}
 
         return values

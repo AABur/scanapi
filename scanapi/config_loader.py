@@ -48,12 +48,10 @@ def load_config_file(file_path):
             f"Loading file [deep_sky_blue1 underline]{file_path}",
             extra={"highlighter": None},
         )
-        data = yaml.load(stream, Loader)
-
-        if not data:
+        if data := yaml.load(stream, Loader):
+            return data
+        else:
             raise EmptyConfigFileError(file_path)
-
-        return data
 
 
 yaml.add_constructor("!include", construct_include, Loader)

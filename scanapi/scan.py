@@ -35,7 +35,7 @@ def scan():
         raise SystemExit(ExitCode.USAGE_ERROR)
     except yaml.YAMLError as e:
         error_message = "Error loading specification file."
-        error_message = "{}\nPyYAML: {}".format(error_message, str(e))
+        error_message = f"{error_message}\nPyYAML: {str(e)}"
         logger.error(error_message)
         raise SystemExit(ExitCode.USAGE_ERROR)
 
@@ -49,7 +49,7 @@ def scan():
         InvalidPythonCodeError,
     ) as e:
         error_message = "Error loading API spec."
-        error_message = "{} {}".format(error_message, str(e))
+        error_message = f"{error_message} {str(e)}"
         logger.error(error_message)
         raise SystemExit(ExitCode.USAGE_ERROR)
 

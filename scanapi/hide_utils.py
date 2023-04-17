@@ -166,11 +166,7 @@ def _get_json_body(http_msg):
     try:
         body = _get_body(http_msg)
 
-        if not body:
-            return None
-
-        return json.loads(body)
-
+        return json.loads(body) if body else None
     except JSONDecodeError:
         return None
 
@@ -185,10 +181,7 @@ def _get_body(http_msg):
     Returns:
         [bytes]: the body/content of the request/response.
     """
-    if not hasattr(http_msg, "body"):
-        return http_msg._content
-
-    return http_msg.body
+    return http_msg.body if hasattr(http_msg, "body") else http_msg._content
 
 
 def _set_json_body(http_msg, value):
