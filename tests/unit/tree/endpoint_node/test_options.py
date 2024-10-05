@@ -30,7 +30,7 @@ class TestOptions:
             {"name": "child-node", "options": child_options}, parent=parent
         )
 
-        assert node.options == {**parent_options, **child_options}
+        assert node.options == parent_options | child_options
 
     @mark.context("when parent and node spec has options defined")
     @mark.it("should keep node options")

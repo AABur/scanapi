@@ -49,11 +49,7 @@ class Settings(dict):
 
     def save_preferences(self, **click_preferences):
         """Caller function that begins the saving of Setting preferences."""
-        config_path = (
-            click_preferences["config_path"]
-            if "config_path" in click_preferences
-            else None
-        )
+        config_path = click_preferences.get("config_path", None)
         self.save_config_file_preferences(config_path)
         self.save_click_preferences(**click_preferences)
 

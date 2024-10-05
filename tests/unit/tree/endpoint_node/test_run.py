@@ -50,11 +50,7 @@ class TestRun:
 
         requests_gen = node.run()
 
-        requests = []
-
-        for request in requests_gen:
-            requests.append(request)
-
+        requests = list(requests_gen)
         assert len(requests) == 2
 
         assert requests == ["foo", "bar"]
@@ -91,9 +87,7 @@ class TestRun:
         with caplog.at_level(logging.ERROR):
             requests_gen = node.run()
 
-            for request in requests_gen:
-                requests.append(request)
-
+            requests.extend(iter(requests_gen))
         assert len(requests) == 1
 
         assert (
